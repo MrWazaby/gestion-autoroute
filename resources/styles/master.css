@@ -5,3 +5,7 @@
 .home_title {
   margin-top: 40px;
 }
+
+legend {
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
