@@ -15,7 +15,8 @@
       if(strlen($_POST["pseudo"]) >= 5 && checkPseudo($_POST["pseudo"], $db)) {
         if(strlen($_POST["pass"]) >= 5) {
           if($_POST["pass"] == $_POST["pass2"]) {
-            createNewUser($_POST["pseudo"], $_POST["pass"], $db);
+            $pass = password_hash($_POST["pass"], PASSWORD_DEFAULT);
+            createNewUser($_POST["pseudo"], $pass, $db);
             $error = 0;
           } else $error = 1;
         } else $error = 2;
