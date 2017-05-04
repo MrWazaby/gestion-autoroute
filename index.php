@@ -12,4 +12,4 @@
   include_once("views/header.php");
   include_once("views/slider.php");
   include_once("views/itinetary.php");
-  include_once("view/footer.php");
+  include_once("views/footer.php");

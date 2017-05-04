@@ -11,4 +11,4 @@
   include_once("views/head.php");
   include_once("views/header.php");
   include_once("views/register.php");
-  include_once("view/footer.php");
+  include_once("views/footer.php");
