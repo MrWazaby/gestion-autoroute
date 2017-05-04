@@ -12,6 +12,7 @@
     return false;
   }
 
+  // Create a new user
   function createNewUser($pseudo, $pass, $db) {
     $query = $db->prepare("INSERT INTO User (pseudo, pass, role) VALUES (:pseudo, :pass, 'user')");
     $query->bindParam(":pseudo", $pseudo);

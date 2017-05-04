@@ -3,6 +3,10 @@
   // Register Controller
   $page = "register";
 
+  // Change page if user is online
+  if(isset($_SESSION["online"])) header("Location: index.php");
+
+  // Array with errors messages
   $errorMessage[0] = "Votre compte a été créé, vous pouvez maintenant vous connecter";
   $errorMessage[1] = "Les deux mot de passe ne correspondent pas";
   $errorMessage[2] = "Votre mot de passe doit faire au moins 5 caractères";

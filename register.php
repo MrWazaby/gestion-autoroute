@@ -1,5 +1,7 @@
 <?php
   // Config
+  session_start();
+  ob_start();
   require_once("config/db.php");
 
   // Models
@@ -13,3 +15,6 @@
   include_once("views/header.php");
   include_once("views/register.php");
   include_once("views/footer.php");
+
+  // Close
+  ob_flush();
