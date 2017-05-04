@@ -3,6 +3,7 @@
   require_once("config/db.php");
 
   // Models
+  require_once("models/register.php");
 
   // Controllers
   require_once("controllers/register.php");
