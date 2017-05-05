@@ -49,3 +49,12 @@
       deleteRoute($_GET["deleteRoute"], $db);
     }
     $routes = getRoutes($db);
+
+    // Handle the exits
+    if(isset($_POST["exitCodA"]) && isset($_POST["exitId"]) && isset($_POST["exitLabel"]) && isset($_POST["exitNumero"]) && !empty($_POST["exitCodA"]) && !empty($_POST["exitId"]) && !empty($_POST["exitLabel"]) && !empty($_POST["exitNumero"])) {
+      addModifyExits($_POST["exitCodA"], $_POST["exitId"], $_POST["exitLabel"], $_POST["exitNumero"], $db);
+    }
+    if(isset($_GET["deleteExit"]) && !empty($_GET["deleteExit"])) {
+      deleteExit($_GET["deleteExit"], $db);
+    }
+    $exits = getExits($db);

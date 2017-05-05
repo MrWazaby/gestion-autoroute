@@ -17,7 +17,7 @@
       <?php include("views/routes.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('exits'); ?>" id="exits">
-      Sorties
+      <?php include("views/exits.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('sections'); ?>" id="sections">
       Troncons

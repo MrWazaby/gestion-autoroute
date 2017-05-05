@@ -63,3 +63,44 @@
     $query->bindParam(":routeCode", $routeCode);
     $query->execute();
   }
+
+  // Functions for exits
+  function getExits($db) {
+    $query = $db->prepare("SELECT * FROM Sortie");
+    $query->execute();
+    $i = 0;
+    $exits = [];
+    while($data = $query->fetch()) {
+      $exits[$i] = $data;
+      $i++;
+    }
+    return $exits;
+  }
+
+  function addModifyExits($exitCodA, $exitId, $exitLabel, $exitNumero, $db) {
+    $query = $db->prepare("SELECT IDSortie FROM Sortie WHERE IDSortie = :exitId");
+    $query->bindParam(":exitId", $exitId);
+    $query->execute();
+    $exit = $query->fetch();
+    if(empty($exit)) {
+      $query = $db->prepare("INSERT INTO Sortie (Libelle, Numero, IDSortie, CodA) VALUES (:exitLabel, :exitNumero, :exitId, :exitCodA)");
+      $query->bindParam(":exitLabel", $exitLabel);
+      $query->bindParam(":exitNumero", $exitNumero);
+      $query->bindParam(":exitId", $exitId);
+      $query->bindParam(":exitCodA", $exitCodA);
+      $query->execute();
+    } else {
+      $query = $db->prepare("UPDATE Sortie SET Libelle = :exitLabel, Numero = :exitNumero, CodA = :exitCodA WHERE IDSortie = :exitId");
+      $query->bindParam(":exitLabel", $exitLabel);
+      $query->bindParam(":exitNumero", $exitNumero);
+      $query->bindParam(":exitId", $exitId);
+      $query->bindParam(":exitCodA", $exitCodA);
+      $query->execute();
+    }
+  }
+
+  function deleteExit($exitId, $db) {
+    $query = $db->prepare("DELETE FROM Sortie WHERE IDSortie = :exitId");
+    $query->bindParam(":exitId", $exitId);
+    $query->execute();
+  }
