@@ -22,9 +22,8 @@ CREATE TABLE Troncon(
         CodT    Int NOT NULL ,
         DuKm    Int ,
         AuKm    Int ,
-        idPeage Int ,
+        IDPeage Int ,
         CodA    Int ,
-        NumE    Int ,
         PRIMARY KEY (CodT )
 )ENGINE=InnoDB;
 
@@ -34,13 +33,11 @@ CREATE TABLE Troncon(
 #------------------------------------------------------------
 
 CREATE TABLE Peage(
-        idPeage Int NOT NULL ,
-        PGDuKm  Int ,
-        PGAuKm  Int ,
         Prix    Int ,
+        IDPeage int (11) Auto_increment  NOT NULL ,
         CodT    Int ,
         Code    Int ,
-        PRIMARY KEY (idPeage )
+        PRIMARY KEY (IDPeage )
 )ENGINE=InnoDB;
 
 
@@ -49,11 +46,11 @@ CREATE TABLE Peage(
 #------------------------------------------------------------
 
 CREATE TABLE Sortie(
-        idSortie int (11) Auto_increment  NOT NULL ,
         Libelle  Varchar (100) ,
         Numero   Int ,
-        CodA     Int ,
-        PRIMARY KEY (idSortie )
+        IDSortie int (11) Auto_increment  NOT NULL ,
+        CodT     Int ,
+        PRIMARY KEY (IDSortie )
 )ENGINE=InnoDB;
 
 
@@ -79,6 +76,7 @@ CREATE TABLE Registre(
         Description Varchar (250) ,
         DateDebut   Date ,
         DateFin     Date ,
+        CodT        Int ,
         PRIMARY KEY (NumE )
 )ENGINE=InnoDB;
 
@@ -94,20 +92,49 @@ CREATE TABLE Autoroute(
 
 
 #------------------------------------------------------------
+# Table: User
+#------------------------------------------------------------
+
+CREATE TABLE User(
+        IDUser int (11) Auto_increment  NOT NULL ,
+        Pseudo Varchar (25) ,
+        Pass   Varchar (155) ,
+        Role   Varchar (25) ,
+        PRIMARY KEY (IDUser )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Trajet
+#------------------------------------------------------------
+
+CREATE TABLE Trajet(
+        IDTrajet   int (11) Auto_increment  NOT NULL ,
+        IDUser     Int ,
+        CodP       Int ,
+        CodP_Ville Int ,
+        PRIMARY KEY (IDTrajet )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
 # Table: joindre
 #------------------------------------------------------------
 
 CREATE TABLE joindre(
         CodP     Int NOT NULL ,
-        idSortie Int NOT NULL ,
-        PRIMARY KEY (CodP ,idSortie )
+        IDSortie Int NOT NULL ,
+        PRIMARY KEY (CodP ,IDSortie )
 )ENGINE=InnoDB;
 
-ALTER TABLE Troncon ADD CONSTRAINT FK_Troncon_idPeage FOREIGN KEY (idPeage) REFERENCES Peage(idPeage);
+ALTER TABLE Troncon ADD CONSTRAINT FK_Troncon_IDPeage FOREIGN KEY (IDPeage) REFERENCES Peage(IDPeage);
 ALTER TABLE Troncon ADD CONSTRAINT FK_Troncon_CodA FOREIGN KEY (CodA) REFERENCES Autoroute(CodA);
-ALTER TABLE Troncon ADD CONSTRAINT FK_Troncon_NumE FOREIGN KEY (NumE) REFERENCES Registre(NumE);
 ALTER TABLE Peage ADD CONSTRAINT FK_Peage_CodT FOREIGN KEY (CodT) REFERENCES Troncon(CodT);
 ALTER TABLE Peage ADD CONSTRAINT FK_Peage_Code FOREIGN KEY (Code) REFERENCES Entreprise(Code);
-ALTER TABLE Sortie ADD CONSTRAINT FK_Sortie_CodA FOREIGN KEY (CodA) REFERENCES Autoroute(CodA);
+ALTER TABLE Sortie ADD CONSTRAINT FK_Sortie_CodT FOREIGN KEY (CodT) REFERENCES Troncon(CodT);
+ALTER TABLE Registre ADD CONSTRAINT FK_Registre_CodT FOREIGN KEY (CodT) REFERENCES Troncon(CodT);
+ALTER TABLE Trajet ADD CONSTRAINT FK_Trajet_IDUser FOREIGN KEY (IDUser) REFERENCES User(IDUser);
+ALTER TABLE Trajet ADD CONSTRAINT FK_Trajet_CodP FOREIGN KEY (CodP) REFERENCES Ville(CodP);
+ALTER TABLE Trajet ADD CONSTRAINT FK_Trajet_CodP_Ville FOREIGN KEY (CodP_Ville) REFERENCES Ville(CodP);
 ALTER TABLE joindre ADD CONSTRAINT FK_joindre_CodP FOREIGN KEY (CodP) REFERENCES Ville(CodP);
-ALTER TABLE joindre ADD CONSTRAINT FK_joindre_idSortie FOREIGN KEY (idSortie) REFERENCES Sortie(idSortie);
+ALTER TABLE joindre ADD CONSTRAINT FK_joindre_IDSortie FOREIGN KEY (IDSortie) REFERENCES Sortie(IDSortie);
