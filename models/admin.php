@@ -38,3 +38,28 @@
     $query->bindParam(":cityCode", $cityCode);
     $query->execute();
   }
+
+  // Functions for routes
+  function getRoutes($db) {
+    $query = $db->prepare("SELECT * FROM Autoroute");
+    $query->execute();
+    $i = 0;
+    $routes = [];
+    while($data = $query->fetch()) {
+      $routes[$i] = $data;
+      $i++;
+    }
+    return $routes;
+  }
+
+  function addRoute($routeCode, $db) {
+    $query = $db->prepare("INSERT INTO Autoroute (CodA) VALUES (:routeCode)");
+    $query->bindParam(":routeCode", $routeCode);
+    $query->execute();
+  }
+
+  function deleteRoute($routeCode, $db) {
+    $query = $db->prepare("DELETE FROM Autoroute WHERE CodA = :routeCode");
+    $query->bindParam(":routeCode", $routeCode);
+    $query->execute();
+  }

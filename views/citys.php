@@ -14,14 +14,14 @@
       <tr>
         <td><?php echo($city["CodP"]) ?></td>
         <td><?php echo($city["Nom"]) ?></td>
-        <td><a href="admin.php?deleteCity=<?php echo($city["CodP"]) ?>&amp;page=city"><p class="text-danger">Supprimer la ville</p></a></td>
+        <td><a href="admin.php?deleteCity=<?php echo($city["CodP"]) ?>&amp;page=citys"><p class="text-danger">Supprimer la ville</p></a></td>
       </tr>
     <?php } ?>
   </tbody>
 </table>
 <br>
 <h4>Ajouter/modifier une ville</h4>
-<form class="form-horizontal" method="post" action="admin.php?page=city">
+<form class="form-horizontal" method="post" action="admin.php?page=citys">
   <fieldset>
     <div class="form-group">
       <label for="inputPostC" class="col-lg-2 control-label">Code postal</label>

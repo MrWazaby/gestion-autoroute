@@ -1,34 +1,34 @@
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="active"><a aria-expanded="true" href="#citys" data-toggle="tab">Ville</a></li>
-    <li class=""><a aria-expanded="false" href="#routes" data-toggle="tab">Autoroutes</a></li>
-    <li class=""><a aria-expanded="false" href="#exits" data-toggle="tab">Sorties</a></li>
-    <li class=""><a aria-expanded="false" href="#sections" data-toggle="tab">Troncons</a></li>
-    <li class=""><a aria-expanded="false" href="#register" data-toggle="tab">Registre</a></li>
-    <li class=""><a aria-expanded="false" href="#tolls" data-toggle="tab">Péages</a></li>
-    <li class=""><a aria-expanded="false" href="#compagnys" data-toggle="tab">Entreprises</a></li>
+    <li class="<?php echo getPageAct('citys'); ?>"><a <?php echo getPageExp('citys'); ?> href="#citys" data-toggle="tab">Ville</a></li>
+    <li class="<?php echo getPageAct('routes'); ?>"><a <?php echo getPageExp('routes'); ?> href="#routes" data-toggle="tab">Autoroutes</a></li>
+    <li class="<?php echo getPageAct('exits'); ?>"><a <?php echo getPageExp('exits'); ?> href="#exits" data-toggle="tab">Sorties</a></li>
+    <li class="<?php echo getPageAct('sections'); ?>"><a <?php echo getPageExp('sections'); ?> href="#sections" data-toggle="tab">Troncons</a></li>
+    <li class="<?php echo getPageAct('register'); ?>"><a <?php echo getPageExp('register'); ?> href="#register" data-toggle="tab">Registre</a></li>
+    <li class="<?php echo getPageAct('tolls'); ?>"><a <?php echo getPageExp('tolls'); ?> href="#tolls" data-toggle="tab">Péages</a></li>
+    <li class="<?php echo getPageAct('compagnys'); ?>"><a <?php echo getPageExp('compagnys'); ?> href="#compagnys" data-toggle="tab">Entreprises</a></li>
   </ul>
 
   <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade active in" id="citys">
+    <div class="tab-pane fade<?php echo getPagePane('citys'); ?>" id="citys">
       <?php include("views/citys.php"); ?>
     </div>
-    <div class="tab-pane fade" id="routes">
-      Autoroutes
+    <div class="tab-pane fade<?php echo getPagePane('routes'); ?>" id="routes">
+      <?php include("views/routes.php"); ?>
     </div>
-    <div class="tab-pane fade" id="exits">
+    <div class="tab-pane fade<?php echo getPagePane('exits'); ?>" id="exits">
       Sorties
     </div>
-    <div class="tab-pane fade" id="sections">
+    <div class="tab-pane fade<?php echo getPagePane('sections'); ?>" id="sections">
       Troncons
     </div>
-    <div class="tab-pane fade" id="register">
+    <div class="tab-pane fade<?php echo getPagePane('register'); ?>" id="register">
       Registre
     </div>
-    <div class="tab-pane fade" id="tolls">
+    <div class="tab-pane fade<?php echo getPagePane('tolls'); ?>" id="tolls">
       Péages
     </div>
-    <div class="tab-pane fade" id="compagnys">
+    <div class="tab-pane fade<?php echo getPagePane('compagnys'); ?>" id="compagnys">
       Entreprises
     </div>
   </div>
