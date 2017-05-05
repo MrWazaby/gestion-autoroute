@@ -20,7 +20,7 @@
       <?php include("views/exits.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('sections'); ?>" id="sections">
-      Troncons
+      <?php include("views/troncons.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('register'); ?>" id="register">
       Registre

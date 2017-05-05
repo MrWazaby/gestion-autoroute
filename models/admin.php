@@ -104,3 +104,48 @@
     $query->bindParam(":exitId", $exitId);
     $query->execute();
   }
+
+  // Functions for section
+  function getSections($db) {
+    $query = $db->prepare("SELECT * FROM Troncon");
+    $query->execute();
+    $i = 0;
+    $sections = [];
+    while($data = $query->fetch()) {
+      $sections[$i] = $data;
+      $i++;
+    }
+    return $sections;
+  }
+
+  function addModifySection($sectionCodT, $sectionDuKm, $sectionAuKm, $sectionIDPeage, $sectionCodA, $sectionNumE, $db) {
+    $query = $db->prepare("SELECT CodT FROM Troncon WHERE CodT = :sectionCodT");
+    $query->bindParam(":sectionCodT", $sectionCodT);
+    $query->execute();
+    $section = $query->fetch();
+    if(empty($section)) {
+      $query = $db->prepare("INSERT INTO Troncon (CodT, DuKm, AuKm, IDPeage, CodA, NumE) VALUES (:sectionCodT, :sectionDuKm, :sectionAuKm, :sectionIDPeage, :sectionCodA, :sectionNumE)");
+      $query->bindParam(":sectionCodT", $sectionCodT);
+      $query->bindParam(":sectionDuKm", $sectionDuKm);
+      $query->bindParam(":sectionAuKm", $sectionAuKm);
+      $query->bindParam(":sectionIDPeage", $sectionIDPeage);
+      $query->bindParam(":sectionCodA", $sectionCodA);
+      $query->bindParam(":sectionNumE", $sectionNumE);
+      $query->execute();
+    } else {
+      $query = $db->prepare("UPDATE Sortie SET DuKm = :sectionDuKm, AuKm = :sectionAuKm, IDPeage = :sectionIDPeage, CodA = :sectionCodA, NumE = :sectionNumE WHERE CodT = :sectionCodT");
+      $query->bindParam(":sectionCodT", $sectionCodT);
+      $query->bindParam(":sectionDuKm", $sectionDuKm);
+      $query->bindParam(":sectionAuKm", $sectionAuKm);
+      $query->bindParam(":sectionIDPeage", $sectionIDPeage);
+      $query->bindParam(":sectionCodA", $sectionCodA);
+      $query->bindParam(":sectionNumE", $sectionNumE);
+      $query->execute();
+    }
+  }
+
+  function deleteSection($CodT, $db) {
+    $query = $db->prepare("DELETE FROM Section WHERE CodT = :CodT");
+    $query->bindParam(":CodT", $CodT);
+    $query->execute();
+  }

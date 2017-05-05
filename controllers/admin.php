@@ -58,3 +58,12 @@
       deleteExit($_GET["deleteExit"], $db);
     }
     $exits = getExits($db);
+
+    // Handle the sections
+    if(isset($_POST["sectionCodT"]) && isset($_POST["sectionDuKm"]) && isset($_POST["sectionAuKm"]) && isset($_POST["sectionIDPeage"]) && isset($_POST["sectionCodA"]) && isset($_POST["sectionNumE"]) && !empty($_POST["sectionCodT"]) && !empty($_POST["sectionDuKm"]) && !empty($_POST["sectionAuKm"]) && !empty($_POST["sectionIDPeage"]) && !empty($_POST["sectionCodA"]) && !empty($_POST["sectionNumE"])) {
+      addModifySection($_POST["sectionCodT"], $_POST["sectionDuKm"], $_POST["sectionAuKm"], $_POST["sectionIDPeage"], $_POST["sectionCodA"], $_POST["sectionNumE"], $db);
+    }
+    if(isset($_GET["deleteSection"]) && !empty($_GET["deleteSection"])) {
+      deleteSection($_GET["deleteSection"], $db);
+    }
+    $sections = getSections($db);
