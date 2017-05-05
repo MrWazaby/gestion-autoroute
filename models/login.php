@@ -8,9 +8,9 @@
     $query->bindParam(":pseudo", $pseudo);
     $query->execute();
     $user = $query->fetch();
-    if(password_verify($pass, $user["pass"])) {
-      $data["pseudo"] = $user["pseudo"];
-      $data["role"] = $user["role"];
+    if(password_verify($pass, $user["Pass"])) {
+      $data["pseudo"] = $user["Pseudo"];
+      $data["role"] = $user["Role"];
       return $data;
     }
 
