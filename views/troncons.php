@@ -5,12 +5,10 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Nom du tronçon</th>
       <th>Du km</th>
       <th>Au km</th>
       <th>Peage associé</th>
       <th>Autoroute associé</th>
-      <th>Registre associé</th>
       <th>Supprimer le tronçon</th>
     </tr>
   </thead>
@@ -20,10 +18,9 @@
         <td><?php echo($section["CodT"]) ?></td>
         <td><?php echo($section["DuKm"]) ?></td>
         <td><?php echo($section["AuKm"]) ?></td>
-        <td><?php echo($section["idPeage"]) ?></td>
+        <td><?php echo($section["IDPeage"]) ?></td>
         <td><?php echo($section["CodA"]) ?></td>
-        <td><?php echo($section["NumE"]) ?></td>
-        <td><a href="admin.php?deleteSection=<?php echo($city["CodT"]) ?>&amp;page=sections"><p class="text-danger">Supprimer le tronçon</p></a></td>
+        <td><a href="admin.php?deleteSection=<?php echo($section["CodT"]) ?>&amp;page=sections"><p class="text-danger">Supprimer le tronçon</p></a></td>
       </tr>
     <?php } ?>
   </tbody>
@@ -60,12 +57,6 @@
       <label for="inputCodT" class="col-lg-2 control-label">ID de l'autoroute associé</label>
       <div class="col-lg-10">
         <input class="form-control" id="inputPostc" placeholder="1" type="text" name="sectionCodA">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputCodT" class="col-lg-2 control-label">ID de l'entrée du registre associée</label>
-      <div class="col-lg-10">
-        <input class="form-control" id="inputPostc" placeholder="1" type="text" name="sectionNumE">
       </div>
     </div>
     <div class="form-group">

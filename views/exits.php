@@ -14,11 +14,11 @@
   <tbody>
     <?php foreach ($exits as $exit) { ?>
       <tr>
-        <td><?php echo($exit["idSortie"]) ?></td>
+        <td><?php echo($exit["IDSortie"]) ?></td>
         <td><?php echo($exit["Libelle"]) ?></td>
         <td><?php echo($exit["Numero"]) ?></td>
         <td><?php echo($exit["CodT"]) ?></td>
-        <td><a href="admin.php?deleteExit=<?php echo($exit["idSortie"]) ?>&amp;page=exits"><p class="text-danger">Supprimer la sortie</p></a></td>
+        <td><a href="admin.php?deleteExit=<?php echo($exit["IDSortie"]) ?>&amp;page=exits"><p class="text-danger">Supprimer la sortie</p></a></td>
       </tr>
     <?php } ?>
   </tbody>

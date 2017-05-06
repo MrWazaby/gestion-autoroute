@@ -118,28 +118,28 @@
     return $sections;
   }
 
-  function addModifySection($sectionCodT, $sectionDuKm, $sectionAuKm, $sectionIDPeage, $sectionCodA, $sectionNumE, $db) {
+  function addModifySection($sectionCodT, $sectionDuKm, $sectionAuKm, $sectionIDPeage, $sectionCodA, $db) {
     $query = $db->prepare("SELECT CodT FROM Troncon WHERE CodT = :sectionCodT");
     $query->bindParam(":sectionCodT", $sectionCodT);
     $query->execute();
     $section = $query->fetch();
     if(empty($section)) {
-      $query = $db->prepare("INSERT INTO Troncon (CodT, DuKm, AuKm, IDPeage, CodA, NumE) VALUES (:sectionCodT, :sectionDuKm, :sectionAuKm, :sectionIDPeage, :sectionCodA, :sectionNumE)");
+      if(!empty($sectionIDPeage)) $query = $db->prepare("INSERT INTO Troncon (CodT, DuKm, AuKm, IDPeage, CodA) VALUES (:sectionCodT, :sectionDuKm, :sectionAuKm, :sectionIDPeage, :sectionCodA)");
+      else $query = $db->prepare("INSERT INTO Troncon (CodT, DuKm, AuKm, CodA) VALUES (:sectionCodT, :sectionDuKm, :sectionAuKm, :sectionCodA)");
       $query->bindParam(":sectionCodT", $sectionCodT);
       $query->bindParam(":sectionDuKm", $sectionDuKm);
       $query->bindParam(":sectionAuKm", $sectionAuKm);
-      $query->bindParam(":sectionIDPeage", $sectionIDPeage);
+      if(!empty($sectionIDPeage)) $query->bindParam(":sectionIDPeage", $sectionIDPeage);
       $query->bindParam(":sectionCodA", $sectionCodA);
-      $query->bindParam(":sectionNumE", $sectionNumE);
       $query->execute();
     } else {
-      $query = $db->prepare("UPDATE Sortie SET DuKm = :sectionDuKm, AuKm = :sectionAuKm, IDPeage = :sectionIDPeage, CodA = :sectionCodA, NumE = :sectionNumE WHERE CodT = :sectionCodT");
+      if(!empty($sectionIDPeage)) $query = $db->prepare("UPDATE Troncon SET DuKm = :sectionDuKm, AuKm = :sectionAuKm, IDPeage = :sectionIDPeage, CodA = :sectionCodA WHERE CodT = :sectionCodT");
+      else $query = $db->prepare("UPDATE Troncon SET DuKm = :sectionDuKm, AuKm = :sectionAuKm, CodA = :sectionCodA WHERE CodT = :sectionCodT");
       $query->bindParam(":sectionCodT", $sectionCodT);
       $query->bindParam(":sectionDuKm", $sectionDuKm);
       $query->bindParam(":sectionAuKm", $sectionAuKm);
-      $query->bindParam(":sectionIDPeage", $sectionIDPeage);
+      if(!empty($sectionIDPeage)) $query->bindParam(":sectionIDPeage", $sectionIDPeage);
       $query->bindParam(":sectionCodA", $sectionCodA);
-      $query->bindParam(":sectionNumE", $sectionNumE);
       $query->execute();
     }
   }
