@@ -67,3 +67,12 @@
       deleteSection($_GET["deleteSection"], $db);
     }
     $sections = getSections($db);
+
+    // Handle the register
+    if(isset($_POST["registerNumE"]) && isset($_POST["registerDescription"]) && isset($_POST["registerDateDebut"]) && isset($_POST["registerDateFin"]) && isset($_POST["registerCodT"]) && !empty($_POST["registerNumE"]) && !empty($_POST["registerDescription"]) && !empty($_POST["registerDateDebut"]) && !empty($_POST["registerDateFin"]) && !empty($_POST["registerCodT"])) {
+      addModifyRegister($_POST["registerNumE"], $_POST["registerDescription"], $_POST["registerDateDebut"], $_POST["registerDateFin"], $_POST["registerCodT"], $db);
+    }
+    if(isset($_GET["deleteRegister"]) && !empty($_GET["deleteRegister"])) {
+      deleteRegister($_GET["deleteRegister"], $db);
+    }
+    $registers = getRegister($db);

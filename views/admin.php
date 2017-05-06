@@ -23,7 +23,7 @@
       <?php include("views/troncons.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('register'); ?>" id="register">
-      Registre
+      <?php include("views/aregister.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('tolls'); ?>" id="tolls">
       Péages

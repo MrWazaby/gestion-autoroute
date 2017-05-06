@@ -145,7 +145,51 @@
   }
 
   function deleteSection($CodT, $db) {
-    $query = $db->prepare("DELETE FROM Section WHERE CodT = :CodT");
+    $query = $db->prepare("DELETE FROM Troncon WHERE CodT = :CodT");
     $query->bindParam(":CodT", $CodT);
+    $query->execute();
+  }
+
+  // Functions for register
+  function getRegister($db) {
+    $query = $db->prepare("SELECT * FROM Registre");
+    $query->execute();
+    $i = 0;
+    $register = [];
+    while($data = $query->fetch()) {
+      $register[$i] = $data;
+      $i++;
+    }
+    return $register;
+  }
+
+  function addModifyRegister($registerNumE, $registerDescription, $registerDateDebut, $registerDateFin, $registerCodT, $db) {
+    $query = $db->prepare("SELECT NumE FROM Registre WHERE NumE = :registerNumE");
+    $query->bindParam(":registerNumE", $registerNumE);
+    $query->execute();
+    $section = $query->fetch();
+    if(empty($section)) {
+      $query = $db->prepare("INSERT INTO Registre (NumE, Description, DateDebut, DateFin, CodT) VALUES (:registerNumE, :registerDescription, :registerDateDebut, :registerDateFin, :registerCodT)");
+      $query->bindParam(":registerNumE", $registerNumE);
+      $query->bindParam(":registerDescription", $registerDescription);
+      $query->bindParam(":registerDateDebut", $registerDateDebut);
+      $query->bindParam(":registerDateFin", $registerDateFin);
+      $query->bindParam(":registerCodT", $registerCodT);
+      $query->execute();
+    } else {
+      $query = $db->prepare("UPDATE Registre SET Description = :registerDescription, DateDebut = :registerDateDebut, DateFin = :registerDateFin, CodT = :registerCodT WHERE NumE = :registerNumE");
+      $query->bindParam(":registerNumE", $registerNumE);
+      $query->bindParam(":registerDescription", $registerDescription);
+      $query->bindParam(":registerDateDebut", $registerDateDebut);
+      $query->bindParam(":registerDateFin", $registerDateFin);
+      $query->bindParam(":registerCodT", $registerCodT);
+      $query->execute();
+    }
+    print_r($query->errorInfo());
+  }
+
+  function deleteRegister($NumE, $db) {
+    $query = $db->prepare("DELETE FROM Registre WHERE NumE = :NumE");
+    $query->bindParam(":NumE", $NumE);
     $query->execute();
   }
