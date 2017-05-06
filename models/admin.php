@@ -77,24 +77,24 @@
     return $exits;
   }
 
-  function addModifyExits($exitCodA, $exitId, $exitLabel, $exitNumero, $db) {
+  function addModifyExits($exitCodT, $exitId, $exitLabel, $exitNumero, $db) {
     $query = $db->prepare("SELECT IDSortie FROM Sortie WHERE IDSortie = :exitId");
     $query->bindParam(":exitId", $exitId);
     $query->execute();
     $exit = $query->fetch();
     if(empty($exit)) {
-      $query = $db->prepare("INSERT INTO Sortie (Libelle, Numero, IDSortie, CodA) VALUES (:exitLabel, :exitNumero, :exitId, :exitCodA)");
+      $query = $db->prepare("INSERT INTO Sortie (Libelle, Numero, IDSortie, CodT) VALUES (:exitLabel, :exitNumero, :exitId, :exitCodT)");
       $query->bindParam(":exitLabel", $exitLabel);
       $query->bindParam(":exitNumero", $exitNumero);
       $query->bindParam(":exitId", $exitId);
-      $query->bindParam(":exitCodA", $exitCodA);
+      $query->bindParam(":exitCodT", $exitCodT);
       $query->execute();
     } else {
-      $query = $db->prepare("UPDATE Sortie SET Libelle = :exitLabel, Numero = :exitNumero, CodA = :exitCodA WHERE IDSortie = :exitId");
+      $query = $db->prepare("UPDATE Sortie SET Libelle = :exitLabel, Numero = :exitNumero, CodT = :exitCodT WHERE IDSortie = :exitId");
       $query->bindParam(":exitLabel", $exitLabel);
       $query->bindParam(":exitNumero", $exitNumero);
       $query->bindParam(":exitId", $exitId);
-      $query->bindParam(":exitCodA", $exitCodA);
+      $query->bindParam(":exitCodT", $exitCodT);
       $query->execute();
     }
   }

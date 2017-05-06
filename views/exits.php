@@ -7,7 +7,7 @@
       <th>#</th>
       <th>Libelle de la sortie</th>
       <th>Numero de la sortie</th>
-      <th>Code autoroute associé</th>
+      <th>Code tronçon associé</th>
       <th>Supprimer la sortie</th>
     </tr>
   </thead>
@@ -17,7 +17,7 @@
         <td><?php echo($exit["idSortie"]) ?></td>
         <td><?php echo($exit["Libelle"]) ?></td>
         <td><?php echo($exit["Numero"]) ?></td>
-        <td><?php echo($exit["CodA"]) ?></td>
+        <td><?php echo($exit["CodT"]) ?></td>
         <td><a href="admin.php?deleteExit=<?php echo($exit["idSortie"]) ?>&amp;page=exits"><p class="text-danger">Supprimer la sortie</p></a></td>
       </tr>
     <?php } ?>
@@ -46,9 +46,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="inputcoda" class="col-lg-2 control-label">Code autoroute associé</label>
+      <label for="inputcodt" class="col-lg-2 control-label">Code tronçon associé</label>
       <div class="col-lg-10">
-        <input class="form-control" id="inputcoda" placeholder="1" type="text" name="exitCodA">
+        <input class="form-control" id="inputcodt" placeholder="1" type="text" name="exitCodT">
       </div>
     </div>
     <div class="form-group">
