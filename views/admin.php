@@ -20,13 +20,13 @@
       <?php include("views/exits.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('sections'); ?>" id="sections">
-      <?php include("views/troncons.php"); ?>
+      <?php include("views/sections.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('register'); ?>" id="register">
       <?php include("views/aregister.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('tolls'); ?>" id="tolls">
-      Péages
+      <?php include("views/tools.php"); ?>
     </div>
     <div class="tab-pane fade<?php echo getPagePane('compagnys'); ?>" id="compagnys">
       Entreprises

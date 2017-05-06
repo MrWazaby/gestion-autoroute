@@ -76,3 +76,12 @@
       deleteRegister($_GET["deleteRegister"], $db);
     }
     $registers = getRegister($db);
+
+    // Handle the tools
+    if(isset($_POST["toolPrix"]) && isset($_POST["IDPeage"]) && isset($_POST["CodT"]) && isset($_POST["Code"]) && !empty($_POST["toolPrix"]) && !empty($_POST["IDPeage"]) && !empty($_POST["CodT"]) && !empty($_POST["Code"])) {
+      addModifyTool($_POST["toolPrix"], $_POST["IDPeage"], $_POST["CodT"], $_POST["Code"], $db);
+    }
+    if(isset($_GET["deleteTool"]) && !empty($_GET["deleteTool"])) {
+      deleteTool($_GET["deleteTool"], $db);
+    }
+    $tools = getTools($db);

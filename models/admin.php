@@ -167,8 +167,8 @@
     $query = $db->prepare("SELECT NumE FROM Registre WHERE NumE = :registerNumE");
     $query->bindParam(":registerNumE", $registerNumE);
     $query->execute();
-    $section = $query->fetch();
-    if(empty($section)) {
+    $register = $query->fetch();
+    if(empty($register)) {
       $query = $db->prepare("INSERT INTO Registre (NumE, Description, DateDebut, DateFin, CodT) VALUES (:registerNumE, :registerDescription, :registerDateDebut, :registerDateFin, :registerCodT)");
       $query->bindParam(":registerNumE", $registerNumE);
       $query->bindParam(":registerDescription", $registerDescription);
@@ -191,5 +191,46 @@
   function deleteRegister($NumE, $db) {
     $query = $db->prepare("DELETE FROM Registre WHERE NumE = :NumE");
     $query->bindParam(":NumE", $NumE);
+    $query->execute();
+  }
+
+  // Functions for tools
+  function getTools($db) {
+    $query = $db->prepare("SELECT * FROM Peage");
+    $query->execute();
+    $i = 0;
+    $tools = [];
+    while($data = $query->fetch()) {
+      $tools[$i] = $data;
+      $i++;
+    }
+    return $tolls;
+  }
+
+  function addModifyTool($toolPrix, $toolIDPeage, $tollCodT, $toolCode, $db) {
+    $query = $db->prepare("SELECT IDPeage FROM Peage WHERE IDPeage = :toolIDPeage");
+    $query->bindParam(":toolIDPeage", $toolIDPeage);
+    $query->execute();
+    $tool = $query->fetch();
+    if(empty($tool)) {
+      $query = $db->prepare("INSERT INTO Peage (Prix, IDPeage, CodT, Code) VALUES (:toolPrix, :toolIDPeage, :tollCodT, :toolCode)");
+      $query->bindParam(":toolPrix", $toolPrix);
+      $query->bindParam(":toolIDPeage", $toolIDPeage);
+      $query->bindParam(":toolCodT", $toolCodT);
+      $query->bindParam(":toolCode", $toolCode);
+      $query->execute();
+    } else {
+      $query = $db->prepare("UPDATE Peage SET Prix = :toolPrix, CodT = :tollCodT, Code = :toolCode WHERE IDPeage = :toolIDPeage");
+      $query->bindParam(":toolPrix", $toolPrix);
+      $query->bindParam(":toolIDPeage", $toolIDPeage);
+      $query->bindParam(":toolCodT", $toolCodT);
+      $query->bindParam(":toolCode", $toolCode);
+      $query->execute();
+    }
+  }
+
+  function deleteTool($toolIDPeage, $db) {
+    $query = $db->prepare("DELETE FROM Peage WHERE IDPeage = :toolIDPeage");
+    $query->bindParam(":toolIDPeage", $toolIDPeage);
     $query->execute();
   }
