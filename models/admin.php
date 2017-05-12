@@ -275,3 +275,30 @@
     $query->bindParam(":companyCode", $companyCode);
     $query->execute();
   }
+
+  // Functions for citys
+  function getConnect($db) {
+    $query = $db->prepare("SELECT * FROM joindre");
+    $query->execute();
+    $i = 0;
+    $connect = [];
+    while($data = $query->fetch()) {
+      $connect[$i] = $data;
+      $i++;
+    }
+    return $connect;
+  }
+
+  function addModifyConnect($connectCodP, $connectIdSortie, $db) {
+    $query = $db->prepare("INSERT INTO joindre (CodP, IdSortie) VALUES (:connectCodP, :connectIdSortie)");
+    $query->bindParam(":connectCodP", $connectCodP);
+    $query->bindParam(":connectIdSortie", $connectIdSortie);
+    $query->execute();
+  }
+
+  function deleteConnect($connectDelete1, $connectDelete2, $db) {
+    $query = $db->prepare("DELETE FROM joindre WHERE CodP = :connectCodP AND IdSortie = :connectIdSortie");
+    $query->bindParam(":connectCodP", $connectCodP);
+    $query->bindParam(":connectIdSortie", $connectIdSortie);
+    $query->execute();
+  }

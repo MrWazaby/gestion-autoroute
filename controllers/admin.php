@@ -94,3 +94,12 @@
       deleteCompany($_GET["deleteCompany"], $db);
     }
     $companies = getCompanies($db);
+
+    // Handle the connections
+    if(isset($_POST["connectCodP"]) && isset($_POST["connectIdSortie"]) && !empty($_POST["connectCodP"]) && !empty($_POST["connectIdSortie"])) {
+      addModifyConnect($_POST["connectCodP"], $_POST["connectIdSortie"], $db);
+    }
+    if(isset($_GET["deleteConnect"]) && !empty($_GET["deleteConnect"]) && isset($_GET["deleteConnect2"]) && !empty($_GET["deleteConnect2"])) {
+      deleteConnect($_GET["deleteConnect"], $_GET["deleteConnect2"], $db);
+    }
+    $connects = getConnect($db);
