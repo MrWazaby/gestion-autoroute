@@ -25,7 +25,7 @@
 </table>
 <br>
 <h4>Ajouter/modifier un péage</h4>
-<form class="form-horizontal" method="post" action="admin.php?page=tools">
+<form class="form-horizontal" method="post" action="admin.php?page=tolls">
   <fieldset>
     <div class="form-group">
       <label for="inputPostC" class="col-lg-2 control-label">ID du péage</label>
