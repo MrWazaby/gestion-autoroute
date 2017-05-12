@@ -13,7 +13,7 @@
     <?php foreach ($connects as $connect) { ?>
       <tr>
         <td><?php echo($connect["CodP"]) ?></td>
-        <td><?php echo($connect["IdSortie"]) ?></td>
+        <td><?php echo($connect["IDSortie"]) ?></td>
         <td><a href="admin.php?deleteConnect=<?php echo($connect["CodP"]) ?>&amp;deleteConnect2=<?php echo($connect["IdSortie"]) ?>&amp;page=connect"><p class="text-danger">Supprimer la connexion</p></a></td>
       </tr>
     <?php } ?>
