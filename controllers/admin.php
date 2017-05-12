@@ -85,3 +85,12 @@
       deleteTool($_GET["deleteTool"], $db);
     }
     $tools = getTools($db);
+
+    // Handle the companies
+    if(isset($_POST["companyCode"]) && isset($_POST["companyNom"]) && isset($_POST["companyCA"]) && isset($_POST["companyDateContrat"]) && !empty($_POST["companyCode"]) && !empty($_POST["companyNom"]) && !empty($_POST["companyCA"]) && !empty($_POST["companyDateContrat"])) {
+      addModifyCompany($_POST["companyCode"], $_POST["companyNom"], $_POST["companyCA"], $_POST["companyDateContrat"], $db);
+    }
+    if(isset($_GET["deleteCompany"]) && !empty($_GET["deleteCompany"])) {
+      deleteCompany($_GET["deleteCompany"], $db);
+    }
+    $companies = getCompanies($db);

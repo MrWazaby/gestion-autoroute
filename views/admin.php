@@ -6,7 +6,7 @@
     <li class="<?php echo getPageAct('sections'); ?>"><a <?php echo getPageExp('sections'); ?> href="#sections" data-toggle="tab">Troncons</a></li>
     <li class="<?php echo getPageAct('register'); ?>"><a <?php echo getPageExp('register'); ?> href="#register" data-toggle="tab">Registre</a></li>
     <li class="<?php echo getPageAct('tolls'); ?>"><a <?php echo getPageExp('tolls'); ?> href="#tolls" data-toggle="tab">Péages</a></li>
-    <li class="<?php echo getPageAct('compagnys'); ?>"><a <?php echo getPageExp('compagnys'); ?> href="#compagnys" data-toggle="tab">Entreprises</a></li>
+    <li class="<?php echo getPageAct('companies'); ?>"><a <?php echo getPageExp('compagnies'); ?> href="#companies" data-toggle="tab">Entreprises</a></li>
   </ul>
 
   <div id="myTabContent" class="tab-content">
@@ -28,8 +28,8 @@
     <div class="tab-pane fade<?php echo getPagePane('tolls'); ?>" id="tolls">
       <?php include("views/tools.php"); ?>
     </div>
-    <div class="tab-pane fade<?php echo getPagePane('compagnys'); ?>" id="compagnys">
-      Entreprises
+    <div class="tab-pane fade<?php echo getPagePane('companies'); ?>" id="companies">
+      <?php include("views/companies.php"); ?>
     </div>
   </div>
 </div>

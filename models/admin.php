@@ -204,7 +204,7 @@
       $tools[$i] = $data;
       $i++;
     }
-    return $tolls;
+    return $tools;
   }
 
   function addModifyTool($toolPrix, $toolIDPeage, $tollCodT, $toolCode, $db) {
@@ -232,5 +232,46 @@
   function deleteTool($toolIDPeage, $db) {
     $query = $db->prepare("DELETE FROM Peage WHERE IDPeage = :toolIDPeage");
     $query->bindParam(":toolIDPeage", $toolIDPeage);
+    $query->execute();
+  }
+
+  // Functions for citys
+  function getCompanies($db) {
+    $query = $db->prepare("SELECT * FROM Entreprise");
+    $query->execute();
+    $i = 0;
+    $companies = [];
+    while($data = $query->fetch()) {
+      $companies[$i] = $data;
+      $i++;
+    }
+    return $companies;
+  }
+
+  function addModifyCompany($companyCode, $companyNom, $companyCA, $companyDateContrat, $db) {
+    $query = $db->prepare("SELECT Code FROM Entreprise WHERE Code = :companyCode");
+    $query->bindParam(":companyCode", $companyCode);
+    $query->execute();
+    $company = $query->fetch();
+    if(empty($company)) {
+      $query = $db->prepare("INSERT INTO Entreprise (Code, Nom, CA, DateContrat) VALUES (:companyCode, :companyNom, :companyCA, :companyDateContrat)");
+      $query->bindParam(":companyCode", $companyCode);
+      $query->bindParam(":companyNom", $companyNom);
+      $query->bindParam(":companyCA", $companyCA);
+      $query->bindParam(":companyDateContrat", $companyDateContrat);
+      $query->execute();
+    } else {
+      $query = $db->prepare("UPDATE Entreprise SET Nom = :companyNom, CA = :compagnyCA, DateContrat = :companyDateContrat WHERE Code = :companyCode");
+      $query->bindParam(":companyCode", $companyCode);
+      $query->bindParam(":companyNom", $companyNom);
+      $query->bindParam(":companyCA", $companyCA);
+      $query->bindParam(":companyDateContrat", $companyDateContrat);
+      $query->execute();
+    }
+  }
+
+  function deleteCompany($companyCode, $db) {
+    $query = $db->prepare("DELETE FROM Entreprise WHERE Code = :companyCode");
+    $query->bindParam(":companyCode", $companyCode);
     $query->execute();
   }
