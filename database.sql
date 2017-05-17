@@ -19,11 +19,10 @@ CREATE TABLE Ville(
 #------------------------------------------------------------
 
 CREATE TABLE Troncon(
-        CodT    Int NOT NULL ,
-        DuKm    Int ,
-        AuKm    Int ,
-        IDPeage Int ,
-        CodA    Int ,
+        CodT Int NOT NULL ,
+        DuKm Int ,
+        AuKm Int ,
+        CodA Int ,
         PRIMARY KEY (CodT )
 )ENGINE=InnoDB;
 
@@ -127,7 +126,6 @@ CREATE TABLE joindre(
         PRIMARY KEY (CodP ,IDSortie )
 )ENGINE=InnoDB;
 
-ALTER TABLE Troncon ADD CONSTRAINT FK_Troncon_IDPeage FOREIGN KEY (IDPeage) REFERENCES Peage(IDPeage);
 ALTER TABLE Troncon ADD CONSTRAINT FK_Troncon_CodA FOREIGN KEY (CodA) REFERENCES Autoroute(CodA);
 ALTER TABLE Peage ADD CONSTRAINT FK_Peage_CodT FOREIGN KEY (CodT) REFERENCES Troncon(CodT);
 ALTER TABLE Peage ADD CONSTRAINT FK_Peage_Code FOREIGN KEY (Code) REFERENCES Entreprise(Code);
