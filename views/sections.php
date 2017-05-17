@@ -7,7 +7,6 @@
       <th>#</th>
       <th>Du km</th>
       <th>Au km</th>
-      <th>Peage associé</th>
       <th>Autoroute associé</th>
       <th>Supprimer le tronçon</th>
     </tr>
@@ -18,7 +17,6 @@
         <td><?php echo($section["CodT"]) ?></td>
         <td><?php echo($section["DuKm"]) ?></td>
         <td><?php echo($section["AuKm"]) ?></td>
-        <td><?php echo($section["IDPeage"]) ?></td>
         <td><?php echo($section["CodA"]) ?></td>
         <td><a href="admin.php?deleteSection=<?php echo($section["CodT"]) ?>&amp;page=sections"><p class="text-danger">Supprimer le tronçon</p></a></td>
       </tr>
@@ -45,12 +43,6 @@
       <label for="inputCodT" class="col-lg-2 control-label">Au KM</label>
       <div class="col-lg-10">
         <input class="form-control" id="inputPostc" placeholder="1" type="text" name="sectionAuKm">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputCodT" class="col-lg-2 control-label">ID du péage associé</label>
-      <div class="col-lg-10">
-        <input class="form-control" id="inputPostc" placeholder="1" type="text" name="sectionIDPeage">
       </div>
     </div>
     <div class="form-group">
