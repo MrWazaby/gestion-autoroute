@@ -203,20 +203,21 @@
     return $tools;
   }
 
-  function addModifyTool($toolPrix, $toolIDPeage, $tollCodT, $toolCode, $db) {
+  function addModifyTool($toolPrix, $toolIDPeage, $toolCodT, $toolCode, $db) {
     $query = $db->prepare("SELECT IDPeage FROM Peage WHERE IDPeage = :toolIDPeage");
     $query->bindParam(":toolIDPeage", $toolIDPeage);
     $query->execute();
     $tool = $query->fetch();
     if(empty($tool)) {
-      $query = $db->prepare("INSERT INTO Peage (Prix, IDPeage, CodT, Code) VALUES (:toolPrix, :toolIDPeage, :tollCodT, :toolCode)");
+      $query = $db->prepare("INSERT INTO Peage (Prix, IDPeage, CodT, Code) VALUES (:toolPrix, :toolIDPeage, :toolCodT, :toolCode)");
       $query->bindParam(":toolPrix", $toolPrix);
       $query->bindParam(":toolIDPeage", $toolIDPeage);
       $query->bindParam(":toolCodT", $toolCodT);
       $query->bindParam(":toolCode", $toolCode);
       $query->execute();
+      print_r($query->errorInfo());
     } else {
-      $query = $db->prepare("UPDATE Peage SET Prix = :toolPrix, CodT = :tollCodT, Code = :toolCode WHERE IDPeage = :toolIDPeage");
+      $query = $db->prepare("UPDATE Peage SET Prix = :toolPrix, CodT = :toolCodT, Code = :toolCode WHERE IDPeage = :toolIDPeage");
       $query->bindParam(":toolPrix", $toolPrix);
       $query->bindParam(":toolIDPeage", $toolIDPeage);
       $query->bindParam(":toolCodT", $toolCodT);

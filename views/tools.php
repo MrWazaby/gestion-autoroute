@@ -18,7 +18,7 @@
         <td><?php echo($tool["Prix"]) ?></td>
         <td><?php echo($tool["CodT"]) ?></td>
         <td><?php echo($tool["Code"]) ?></td>
-        <td><a href="admin.php?deleteTool=<?php echo($tool["IDPeage"]) ?>&amp;page=tools"><p class="text-danger">Supprimer le péages</p></a></td>
+        <td><a href="admin.php?deleteTool=<?php echo($tool["IDPeage"]) ?>&amp;page=tolls"><p class="text-danger">Supprimer le péages</p></a></td>
       </tr>
     <?php } ?>
   </tbody>
