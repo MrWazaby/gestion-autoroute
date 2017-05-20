@@ -108,10 +108,10 @@ CREATE TABLE User(
 #------------------------------------------------------------
 
 CREATE TABLE Trajet(
-        IDTrajet   int (11) Auto_increment  NOT NULL ,
-        IDUser     Int ,
-        CodP       Int ,
-        CodP_Ville Int ,
+        IDTrajet int (11) Auto_increment  NOT NULL ,
+        Debut    Varchar (255) ,
+        Fin      Varchar (255) ,
+        IDUser   Int ,
         PRIMARY KEY (IDTrajet )
 )ENGINE=InnoDB;
 
@@ -132,7 +132,5 @@ ALTER TABLE Peage ADD CONSTRAINT FK_Peage_Code FOREIGN KEY (Code) REFERENCES Ent
 ALTER TABLE Sortie ADD CONSTRAINT FK_Sortie_CodT FOREIGN KEY (CodT) REFERENCES Troncon(CodT);
 ALTER TABLE Registre ADD CONSTRAINT FK_Registre_CodT FOREIGN KEY (CodT) REFERENCES Troncon(CodT);
 ALTER TABLE Trajet ADD CONSTRAINT FK_Trajet_IDUser FOREIGN KEY (IDUser) REFERENCES User(IDUser);
-ALTER TABLE Trajet ADD CONSTRAINT FK_Trajet_CodP FOREIGN KEY (CodP) REFERENCES Ville(CodP);
-ALTER TABLE Trajet ADD CONSTRAINT FK_Trajet_CodP_Ville FOREIGN KEY (CodP_Ville) REFERENCES Ville(CodP);
 ALTER TABLE joindre ADD CONSTRAINT FK_joindre_CodP FOREIGN KEY (CodP) REFERENCES Ville(CodP);
 ALTER TABLE joindre ADD CONSTRAINT FK_joindre_IDSortie FOREIGN KEY (IDSortie) REFERENCES Sortie(IDSortie);
