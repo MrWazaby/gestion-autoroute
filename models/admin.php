@@ -181,7 +181,6 @@
       $query->bindParam(":registerCodT", $registerCodT);
       $query->execute();
     }
-    print_r($query->errorInfo());
   }
 
   function deleteRegister($NumE, $db) {
@@ -215,7 +214,6 @@
       $query->bindParam(":toolCodT", $toolCodT);
       $query->bindParam(":toolCode", $toolCode);
       $query->execute();
-      print_r($query->errorInfo());
     } else {
       $query = $db->prepare("UPDATE Peage SET Prix = :toolPrix, CodT = :toolCodT, Code = :toolCode WHERE IDPeage = :toolIDPeage");
       $query->bindParam(":toolPrix", $toolPrix);

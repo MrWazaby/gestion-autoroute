@@ -5,6 +5,7 @@
   require_once("config/db.php");
 
   // Models
+  require_once("models/index.php");
 
   // Controllers
   require_once("controllers/index.php");

@@ -1,19 +1,19 @@
 <div class="container">
   <h1 class="home_title">Rechercher un itinéraire</h1>
-  <form class="col-lg-6 form-horizontal">
+  <form class="col-lg-6 form-horizontal" method="post" action="index.php">
     <fieldset>
       <legend>Trajet</legend>
       <div class="form-group">
         <label for="inputStart" class="col-lg-2 control-label">Départ</label>
         <div class="col-lg-10">
-          <input class="form-control" id="inputStart" placeholder="Je vous conduis ?" type="text">
+          <input class="form-control" id="inputStart" name="inputStart" placeholder="Je vous conduis ?" type="text">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputFinish" class="col-lg-2 control-label">Arrivée</label>
         <div class="col-lg-10">
-          <input class="form-control" id="inputFinish" placeholder="Je n’ai jamais pu refuser quoi que ce soit d’une brune aux yeux marrons." type="text">
+          <input class="form-control" id="inputFinish" name="inputFinish" placeholder="Je n’ai jamais pu refuser quoi que ce soit d’une brune aux yeux marrons." type="text">
         </div>
       </div>
 
