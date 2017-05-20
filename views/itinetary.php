@@ -27,6 +27,16 @@
 
   <div class="col-lg-6">
     <legend>Meilleur parcours</legend>
+    <?php
+      if(isset($error)) {
+        ?>
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          Ville de départ ou d'arrivée incorrecte !
+        </div>
+        <?php
+      }
+    ?>
     <div class="panel panel-default">
       <div class="panel-heading">Route #1</div>
       <div class="panel-body">

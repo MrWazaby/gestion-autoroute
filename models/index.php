@@ -2,6 +2,20 @@
 
   // Index model
 
+  // Get point id
+  function getPoint($point, $db) {
+    $query = $db->prepare("SELECT IDSortie FROM joindre WHERE CodP IN (SELECT CodP FROM Ville WHERE Nom LIKE :point)");
+    $query->bindParam(":point", $point);
+    $query->execute();
+    $i = 0;
+    $points = null;
+    while($data = $query->fetch()) {
+      $points[$i] = 'exit_'.$data["IDSortie"];
+      $i++;
+    }
+    return $points;
+  }
+
   // Generate the graph
   function getGraph($db) {
     $query = $db->query("SELECT * FROM Troncon WHERE Troncon.CodT NOT IN (SELECT CodT FROM Registre WHERE NOW() >= Registre.DateDebut AND NOW() <= Registre.DateFin)");
