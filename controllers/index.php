@@ -49,10 +49,15 @@
         foreach ($path as $key => $value) {
           $total[$key] = getTotal($value[0], $db);
           $lowest_weight = $total[$key];
+          $prices[$key] = getPrice($value[0], $db);
+          $price = $prices[$key];
         }
 
         foreach ($total as $key => $value) {
-          if($value < $lowest_weight) $lowest_weight = $value;
+          if($value < $lowest_weight) {
+            $lowest_weight = $value;
+            $price = $prices[$key];
+          }
         }
 
         foreach ($total as $key => $value) {

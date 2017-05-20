@@ -124,3 +124,18 @@
 
     return $total;
   }
+
+  function getPrice($path, $db) {
+    $total = 0;
+    foreach ($path as $key => $value) {
+      if(substr( $value, 0, 8 ) == "section_") {
+        $query = $db->prepare("SELECT Prix FROM Peage WHERE CodT = :id");
+        $id = substr($value, strlen("section_"));
+        $query->bindParam(":id", $id);
+        $query->execute();
+        while($data = $query->fetch()) $total += $data["Prix"];
+      }
+    }
+
+    return $total;
+  }
