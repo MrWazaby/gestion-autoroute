@@ -110,12 +110,12 @@
   function getTotal($path, $db) {
     $total = 0;
     foreach ($path as $key => $value) {
-      if(substr( $key, 0, 8 ) == "section_") {
-        $query = $db->prepare("SELECT * FROM Troncon WHERE id = :id");
+      if(substr( $value, 0, 8 ) == "section_") {
+        $query = $db->prepare("SELECT * FROM Troncon WHERE CodT = :id");
         $query->bindParam(":id", substr($value, strlen("section_")));
         $query->execute();
-        $data = $query->fecth();
-        $total += $data["AuKm"] - $data["DuKm"];
+        $data = $query->fetch();
+        $total += abs($data["AuKm"] - $data["DuKm"]);
       } else {
         $total += 1;
       }
