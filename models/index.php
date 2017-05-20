@@ -27,7 +27,7 @@
       $sections[$data["CodT"]] = $data["AuKm"] - $data["DuKm"];
     }
 
-    $query = $db->query("SELECT * FROM Sortie");
+    $query = $db->query("SELECT * FROM Sortie WHERE Sortie.CodT NOT IN (SELECT CodT FROM Registre WHERE NOW() >= Registre.DateDebut AND NOW() <= Registre.DateFin)");
     $query->execute();
 
     while($data = $query->fetch()) {

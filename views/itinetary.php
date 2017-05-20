@@ -30,7 +30,11 @@
     <?php if(isset($error)) { ?>
       <div class="alert alert-dismissible alert-danger">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Ville de départ ou d'arrivée incorrecte !
+        <?php if($error == 1) { ?>
+          Ville de départ ou d'arrivée incorrecte !
+        <?php } else { ?>
+          Il n y a pas encore de trajet possible pour cet itiniéraire !
+        <?php } ?>
       </div>
     <?php } else if(isset($solution)) {
         //print_r($solution);

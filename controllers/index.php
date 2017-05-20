@@ -34,6 +34,7 @@
     if($starts != null && $stops != null) {
 
       $graph = getGraph($db);
+
       $itinetarty = new Dijkstra($graph);
 
       $i = 0;
@@ -43,6 +44,8 @@
           $i++;
         }
       }
+
+      $path = array_filter($path);
 
       if(!empty($path)) {
 
