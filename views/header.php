@@ -18,7 +18,7 @@
             <li <?php if($page == "login") echo 'class="active"'; ?>><a href="login.php">Connexion</a></li>
             <li <?php if($page == "register") echo 'class="active"'; ?>><a href="register.php">Inscription</a></li>
           <?php } else { ?>
-            <li <?php if($page == "save") echo 'class="active"'; ?>><a href="#">Mes trajets sauvegardés</a></li>
+            <li <?php if($page == "save") echo 'class="active"'; ?>><a href="save.php">Mes trajets sauvegardés</a></li>
             <?php if($_SESSION["user"]["role"] == "admin") { ?>
               <li <?php if($page == "admin") echo 'class="active"'; ?>><a href="admin.php">Administration</a></li>
             <?php } ?>

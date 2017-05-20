@@ -11,6 +11,7 @@
     if(password_verify($pass, $user["Pass"])) {
       $data["pseudo"] = $user["Pseudo"];
       $data["role"] = $user["Role"];
+      $data["IDUser"] = $user["IDUser"];
       return $data;
     }
 
