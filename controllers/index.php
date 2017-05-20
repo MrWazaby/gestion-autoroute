@@ -28,20 +28,40 @@
   // Check if itinetarty has been ask :
   if(isset($_POST['inputStart']) && isset($_POST['inputFinish']) && !empty($_POST['inputStart']) && !empty($_POST['inputFinish'])) {
 
-    $start = getPoint($_POST['inputStart'], $db);
-    $stop = getPoint($_POST['inputFinish'], $db);
+    $starts = getPoint($_POST['inputStart'], $db);
+    $stops = getPoint($_POST['inputFinish'], $db);
 
-    if($start != null && $stop != null) {
+    if($starts != null && $stops != null) {
 
       $graph = getGraph($db);
       $itinetarty = new Dijkstra($graph);
 
-      $path = $itinetarty->shortestPaths($start[0], $stop[0]);
+      $i = 0;
+      foreach ($starts as $key => $value) {
+        foreach ($stops as $key2 => $value2) {
+          $path[$i] = $itinetarty->shortestPaths($value, $value2);
+          $i++;
+        }
+      }
 
-      if(!empty($path[0]))
-        $solution = getSolution($path[0], $db);
-      else
-        $error = 2;
+      if(!empty($path)) {
+
+        foreach ($path as $key => $value) {
+          $total[$key] = getTotal($value[0], $db);
+          $lowest_weight = $total[$key];
+        }
+
+        foreach ($total as $key => $value) {
+          if($value < $lowest_weight) $lowest_weight = $value;
+        }
+
+        foreach ($total as $key => $value) {
+          if($value == $lowest_weight) $goodPath = $path[$key];
+        }
+
+        $solution = getSolution($goodPath[0], $db);
+
+      } else $error = 2;
 
     } else $error = 1;
 }

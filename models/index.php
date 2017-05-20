@@ -34,6 +34,13 @@
       $exits[$data["IDSortie"]] = $data["CodT"];
     }
 
+    $query = $db->query("SELECT * FROM joindre");
+    $query->execute();
+
+    while($data = $query->fetch()) {
+      $joindre[$data["IDSortie"]] = $data["CodP"];
+    }
+
     foreach ($exits as $keyExit => $exit) {
       $graph["exit_".$keyExit] = array();
     }
@@ -51,6 +58,14 @@
       foreach ($Subroutes as $keyRoute => $route) {
         foreach ($Subroutes as $keyRoute2 => $route2) {
           if($keyRoute != $keyRoute2) $graph["section_".$keyRoute]["section_".$keyRoute2] = $route[0];
+        }
+      }
+    }
+
+    foreach ($joindre as $key => $value) {
+      foreach ($joindre as $key2 => $value2) {
+        if($value == $value2 && $key != $key2) {
+          $graph["exit_".$key]["exit_".$key2] = 1;
         }
       }
     }
@@ -90,4 +105,21 @@
     $data = $query->fetch();
 
     return $data["AuKm"] - $data["DuKm"];
+  }
+
+  function getTotal($path, $db) {
+    $total = 0;
+    foreach ($path as $key => $value) {
+      if(substr( $key, 0, 8 ) == "section_") {
+        $query = $db->prepare("SELECT * FROM Troncon WHERE id = :id");
+        $query->bindParam(":id", substr($value, strlen("section_")));
+        $query->execute();
+        $data = $query->fecth();
+        $total += $data["AuKm"] - $data["DuKm"];
+      } else {
+        $total += 1;
+      }
+    }
+
+    return $total;
   }

@@ -33,15 +33,19 @@
         Ville de départ ou d'arrivée incorrecte !
       </div>
     <?php } else if(isset($solution)) {
-        sort($solution);
+        //print_r($solution);
         foreach ($solution as $key => $value) {
           if($key != count($solution) - 1) { ?>
 
             <div class="panel panel-default">
               <div class="panel-heading">Route <?php echo($value["numero"]); ?></div>
               <div class="panel-body">
-                Prendre la route #<?php echo($value["numero"]); ?> via <?php echo($value["label"]); ?> dans la ville de <?php echo($value["city"]); ?><br>
-                Rouler pendant <?php echo($value["distance"]); ?>km<br>
+                <?php if($value["distance"] == 0) { ?>
+                  Prendre la sortie #<?php echo($value["numero"]); ?> (<?php echo($value["label"]); ?>) pour arriver dans la ville de <?php echo($value["city"]); ?><br>
+                <?php } else { ?>
+                  Prendre la route #<?php echo($value["route"]); ?> via <?php echo($value["label"]); ?> dans la ville de <?php echo($value["city"]); ?><br>
+                  Rouler pendant <?php echo($value["distance"]); ?>km<br>
+                <?php } ?>
               </div>
             </div>
 
