@@ -56,7 +56,7 @@
               <div class="panel-body">
                 Prendre la sortie <?php echo($value["label"]); ?><br>
                 Vous êtes arrivé à <?php echo($value["city"]); ?> !<br>
-                Trajet total : km
+                Trajet total : <?php echo($lowest_weight); ?>km<br>
               </div>
             </div>
 

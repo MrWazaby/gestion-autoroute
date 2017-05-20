@@ -112,7 +112,8 @@
     foreach ($path as $key => $value) {
       if(substr( $value, 0, 8 ) == "section_") {
         $query = $db->prepare("SELECT * FROM Troncon WHERE CodT = :id");
-        $query->bindParam(":id", substr($value, strlen("section_")));
+        $id = substr($value, strlen("section_"));
+        $query->bindParam(":id", $id);
         $query->execute();
         $data = $query->fetch();
         $total += abs($data["AuKm"] - $data["DuKm"]);
