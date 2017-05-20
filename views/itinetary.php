@@ -27,42 +27,37 @@
 
   <div class="col-lg-6">
     <legend>Meilleur parcours</legend>
-    <?php
-      if(isset($error)) {
-        ?>
-        <div class="alert alert-dismissible alert-danger">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          Ville de départ ou d'arrivée incorrecte !
-        </div>
-        <?php
-      }
-    ?>
-    <div class="panel panel-default">
-      <div class="panel-heading">Route #1</div>
-      <div class="panel-body">
-        Prendre la route #1 dans la ville de Paris<br>
-        Rouler pendant 212km<br>
-        Prendre la sortie #12 direction route #3
+    <?php if(isset($error)) { ?>
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        Ville de départ ou d'arrivée incorrecte !
       </div>
-    </div>
+    <?php } else if(isset($solution)) {
+        sort($solution);
+        foreach ($solution as $key => $value) {
+          if($key != count($solution) - 1) { ?>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">Route #3</div>
-      <div class="panel-body">
-        Rouler pendant 212km<br>
-        Prendre la sortie #2 direction Mareseille
-      </div>
-    </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">Route <?php echo($value["numero"]); ?></div>
+              <div class="panel-body">
+                Prendre la route #<?php echo($value["numero"]); ?> via <?php echo($value["label"]); ?> dans la ville de <?php echo($value["city"]); ?><br>
+                Rouler pendant <?php echo($value["distance"]); ?>km<br>
+              </div>
+            </div>
 
+          <?php } else { ?>
 
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Vous êtes arrivé !</h3>
-      </div>
-      <div class="panel-body">
-        Nombre de km de cet itinéraire : 424
-      </div>
-    </div>
+            <div class="panel panel-success">
+              <div class="panel-heading">Vous êtes arrivé</div>
+              <div class="panel-body">
+                Prendre la sortie <?php echo($value["label"]); ?><br>
+                Vous êtes arrivé à <?php echo($value["city"]); ?> !<br>
+                Trajet total : km
+              </div>
+            </div>
+
+          <?php }
+        }
+    } ?>
   </div>
-
 </div>

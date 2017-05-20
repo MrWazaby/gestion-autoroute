@@ -57,3 +57,37 @@
 
     return $graph;
   }
+
+  function getExit($value, $db) {
+    $value = substr($value, strlen("exit_"));
+
+    $query = $db->prepare("
+      SELECT
+        Ville.Nom,
+        Sortie.Numero,
+        Sortie.Libelle,
+        Troncon.CodA
+      FROM
+        Ville,
+        Sortie,
+        Troncon,
+        joindre
+      WHERE
+        Sortie.IDSortie = :exit && joindre.IDSortie = Sortie.IDSortie && Troncon.CodT = Sortie.CodT && Ville.CodP = joindre.CodP
+    ");
+    $query->bindParam(':exit', $value);
+    $query->execute();
+
+    return $query->fetch();
+  }
+
+  function getDistance($value, $db) {
+    $value = substr($value, strlen("section_"));
+
+    $query = $db->prepare("SELECT * FROM Troncon WHERE CodT = :section");
+    $query->bindParam(":section", $value);
+    $query->execute();
+    $data = $query->fetch();
+
+    return $data["AuKm"] - $data["DuKm"];
+  }
