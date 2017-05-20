@@ -6,14 +6,14 @@
       <div class="form-group">
         <label for="inputStart" class="col-lg-2 control-label">Départ</label>
         <div class="col-lg-10">
-          <input class="form-control" id="inputStart" name="inputStart" placeholder="Je vous conduis ?" type="text">
+          <input class="form-control" id="inputStart" name="inputStart" placeholder="Je vous conduis ?" type="text" value="<?php if(isset($_POST['inputStart'])) echo($_POST['inputStart']); ?>">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputFinish" class="col-lg-2 control-label">Arrivée</label>
         <div class="col-lg-10">
-          <input class="form-control" id="inputFinish" name="inputFinish" placeholder="Je n’ai jamais pu refuser quoi que ce soit d’une brune aux yeux marrons." type="text">
+          <input class="form-control" id="inputFinish" name="inputFinish" placeholder="Je n’ai jamais pu refuser quoi que ce soit d’une brune aux yeux marrons." type="text" value="<?php if(isset($_POST['inputFinish'])) echo($_POST['inputFinish']); ?>">
         </div>
       </div>
 
@@ -65,8 +65,16 @@
               </div>
             </div>
 
+            <?php if(isset($_SESSION['online'])) { ?><a href="save.php?start=<?php echo($_POST['inputStart']); ?>&amp;end=<?php echo($_POST['inputFinish']); ?>" class="btn btn-primary btn-xs">Sauvegarder mon trajet</a><br><?php } ?>
+            <br>
+
           <?php }
         }
-    } ?>
+    } else { ?>
+      Un petit gif au hasard en attendant votre itinéraire ?<br>
+      <br>
+      <img id="gif" src="" alt="gif"><br>
+      <br>
+    <?php } ?>
   </div>
 </div>
