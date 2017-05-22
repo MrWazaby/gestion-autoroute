@@ -73,6 +73,7 @@
     return $graph;
   }
 
+  // Function to get all data about an exit
   function getExit($value, $db) {
     $value = substr($value, strlen("exit_"));
 
@@ -96,6 +97,7 @@
     return $query->fetch();
   }
 
+  // Get distance for a section
   function getDistance($value, $db) {
     $value = substr($value, strlen("section_"));
 
@@ -107,6 +109,7 @@
     return $data["AuKm"] - $data["DuKm"];
   }
 
+  // Get the total distance
   function getTotal($path, $db) {
     $total = 0;
     foreach ($path as $key => $value) {
@@ -125,6 +128,7 @@
     return $total;
   }
 
+  // Get the price for itinetary
   function getPrice($path, $db) {
     $total = 0;
     foreach ($path as $key => $value) {

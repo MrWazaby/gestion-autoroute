@@ -8,8 +8,10 @@
       die();
     }
 
+    // Save intinetary
     if(isset($_GET["start"]) && isset($_GET["end"])) {
       saveItinetary($_SESSION["user"]["IDUser"], $_GET["start"], $_GET["end"], $db);
     }
 
+    // Get itinetarys
     $itinetarys = getList($_SESSION["user"]["IDUser"], $db);
