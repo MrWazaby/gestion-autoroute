@@ -1,4 +1,14 @@
 <?php
+
+  /*
+   * PROJET DE BDD2
+   * EFREI Promo 2019
+   * L3 - Groupe F
+   * MARTIN Alexandre
+   * NOMENYO Perla
+   * RALIJAONA Nathalie
+   */
+
   // Config
   session_start();
   ob_start();
